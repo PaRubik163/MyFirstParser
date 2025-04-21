@@ -8,7 +8,8 @@
     "birthday": "(19.10.2006)",
     "yearsold": "18лет",
     "email": "wlnffx@mail.ru",
-    "studentnumber": "24Б0812"
+    "studentnumber": "24Б0812",
+    "login": "palagnyuk.a.a@edu.mirea.ru"
   },
   {
     "fio": "Бакыр Мэрт Йылмазович",
@@ -19,7 +20,8 @@
     "birthday": "(20.06.2006)",
     "yearsold": "18лет",
     "email": "mertbakyr@yandex.ru",
-    "studentnumber": "24Б0786"
+    "studentnumber": "24Б0786",
+    "login": "bakyr.m.y@edu.mirea.ru"
   },
   {
     "fio": "Андреев Алексей Романович",
@@ -30,7 +32,8 @@
     "birthday": "(12.07.2006)",
     "yearsold": "18лет",
     "email": "telzer1@yandex.ru",
-    "studentnumber": "24Б1167"
+    "studentnumber": "24Б1167",
+    "login": "andreev.a.r1@edu.mirea.ru"
   },
   {
     "fio": "Горчаков Алексей Алексеевич",
@@ -41,7 +44,8 @@
     "birthday": "(19.02.2006)",
     "yearsold": "19лет",
     "email": "alegor-1902@yandex.ru",
-    "studentnumber": "24Б0795"
+    "studentnumber": "24Б0795",
+    "login": "gorchakov.a.a@edu.mirea.ru"
   },
   {
     "fio": "Прыгов Кирилл Дмитриевич",
@@ -52,6 +56,7 @@
     "birthday": "(05.08.2006)",
     "yearsold": "18лет",
     "email": "k_jumper@mail.ru",
-    "studentnumber": "24Б0815"
+    "studentnumber": "24Б0815",
+    "login": "prygov.k.d@edu.mirea.ru"
   }
 ]
