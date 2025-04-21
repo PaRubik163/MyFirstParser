@@ -156,7 +156,7 @@ func takeStudentNumber(resp *resty.Response) string {
 		log.Fatalf("Ошибка создания файла", err)
 	}
 
-	return doc.Find(".font-semibold.text-gray-900.text-sm").Eq(1).Text()
+	return doc.Find(".font-semibold.text-gray-900.text-sm").Eq(2).Text()
 }
 
 func toJSON(persons []Person){
