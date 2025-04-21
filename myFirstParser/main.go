@@ -151,10 +151,8 @@ func takeEmail(resp *resty.Response) string {
 func toJSON(persons []Person){
 	file, err := os.Create("information.json")
 
-	
 	if err != nil{
 		log.Fatalf("Ошибка создания JSON файла", err)
-
 	}
 
 	defer file.Close()
@@ -167,9 +165,6 @@ func toJSON(persons []Person){
 	if err != nil {
 	log.Fatalf("❌Ошибка записи JSON: %v", err)
 	}
-
-
-
 
 	fmt.Printf("✅Готово! Найдено людей: %d. Сохранено в information.json\n", len(persons))
 }
