@@ -12,7 +12,7 @@ import (
 	"github.com/icrowley/fake"
 )
 
-type Person struct {
+type Person struct{
 	FIO           string `json:"fio"`
 	Fprice        string `json:"fprice"`
 	Sprice        string `json:"sprice"`
@@ -26,7 +26,7 @@ type Person struct {
 	WhichYear 	  string `json:"year_of_university"`
 }
 
-func (p *Person) takeFIO(resp *resty.Response)  {
+func (p *Person) takeFIO(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -36,7 +36,7 @@ func (p *Person) takeFIO(resp *resty.Response)  {
 	p.FIO = (doc.Find(".ml-6").Find("h1").Text())
 }
 
-func (p *Person) takePrice(resp *resty.Response)  {
+func (p *Person) takePrice(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -46,7 +46,7 @@ func (p *Person) takePrice(resp *resty.Response)  {
 	p.Fprice, p.Sprice =  ExtraPrice(doc.Find("h4.text-lg.font-bold").Text())
 }
 
-func (p *Person) takePaid(resp *resty.Response)  {
+func (p *Person) takePaid(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -56,7 +56,7 @@ func (p *Person) takePaid(resp *resty.Response)  {
 	p.Fpaid, p.Spaid = ExtraPaid(doc.Find("p.font-normal.text-gray-500.text-sm").Text())
 }
 
-func (p *Person) takeALLDataOfBirthday(resp *resty.Response)  {
+func (p *Person) takeALLDataOfBirthday(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -66,8 +66,7 @@ func (p *Person) takeALLDataOfBirthday(resp *resty.Response)  {
 	p.YearsOld, p.Birthday = ExtraBirthdayAndYearsold(doc.Find(".font-semibold.text-gray-900.text-sm").Eq(4).Text())
 }
 
-
-func (p *Person) takeEmail(resp *resty.Response)  {
+func (p *Person) takeEmail(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -77,7 +76,7 @@ func (p *Person) takeEmail(resp *resty.Response)  {
 	p.Email = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(3).Text()
 }
 
-func (p *Person) takeStudentNumber(resp *resty.Response)  {
+func (p *Person) takeStudentNumber(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -87,7 +86,7 @@ func (p *Person) takeStudentNumber(resp *resty.Response)  {
 	p.StudentNumber = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(2).Text()
 }
 
-func (p *Person) takeLogin(resp *resty.Response)  {
+func (p *Person) takeLogin(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -97,7 +96,7 @@ func (p *Person) takeLogin(resp *resty.Response)  {
 	p.Login = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(6).Text()
 }
 
-func (p *Person) takeWhichYearOfUniversity(resp *resty.Response)  {
+func (p *Person) takeWhichYearOfUniversity(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -107,14 +106,14 @@ func (p *Person) takeWhichYearOfUniversity(resp *resty.Response)  {
 	p.WhichYear = doc.Find("p.text-sm.text-grey-900").Eq(0).Text()
 }
 
-func ExtraPrice(allprice string) (string, string) {
+func ExtraPrice(allprice string) (string, string){
 	allprice = strings.ReplaceAll(allprice, "	", "")
 	allprice = strings.ReplaceAll(allprice, " ", "")
 
 	return allprice[:12], allprice[12:]
 }
 
-func ExtraPaid(allPaid string) (bool, bool) {
+func ExtraPaid(allPaid string) (bool, bool){
 	if allPaid[:16] == "Оплачено" && allPaid[16:] == "Оплачено" {
 		return true, true
 	}
@@ -122,9 +121,7 @@ func ExtraPaid(allPaid string) (bool, bool) {
 	return false, false
 }
 
-
-
-func ExtraBirthdayAndYearsold(birthdayAndyearsold string) (string, string) {
+func ExtraBirthdayAndYearsold(birthdayAndyearsold string) (string, string){
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, " 	", "")
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, " ", "")
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, "\n", "")
@@ -133,7 +130,7 @@ func ExtraBirthdayAndYearsold(birthdayAndyearsold string) (string, string) {
 	return birthdayAndyearsold[:9], birthdayAndyearsold[9:]
 }
 
-func toJSON(persons []Person) {
+func toJSON(persons []Person){
 	file, err := os.Create("information.json")
 
 	if err != nil {
@@ -154,7 +151,7 @@ func toJSON(persons []Person) {
 	fmt.Printf("✅Готово! Найдено людей: %d. Сохранено в information.json\n", len(persons))
 }
 
-func main() {
+func main(){
 	LogPass := map[string]string{
 		"palagnyuk.a.a@edu.mirea.ru": "Aa19102006.",
 		"bakyr.m.y@edu.mirea.ru":     "Mert251326Mert@",
@@ -168,7 +165,6 @@ func main() {
 
 	for k, v := range LogPass {
 		client := resty.New()
-
 		client.SetHeader("User-Agent", fake.UserAgent())
 
 		_, err := client.R().Get("https://lk.mirea.ru/auth.php")
