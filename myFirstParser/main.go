@@ -23,6 +23,7 @@ type Person struct {
 	Email         string `json:"email"`
 	StudentNumber string `json:"studentnumber"`
 	Login         string `json:"login"`
+	WhichYear 	  string `json:"year_of_university"`
 }
 
 func main() {
@@ -65,7 +66,19 @@ func main() {
 		fpaid, spaid := takePaid(resp)
 		yearsold, birthday := takeALLDataOfBirthday(resp)
 
-		person := Person{FIO: takeFIO(resp), Fprice: fprice, Sprice: sprice, Fpaid: fpaid, Spaid: spaid, Birthday: birthday, YearsOld: yearsold, Email: takeEmail(resp), StudentNumber: takeStudentNumber(resp), Login: takeLogin(resp)}
+		person := Person{
+			FIO: takeFIO(resp), 
+			Fprice: fprice, 
+			Sprice: sprice, 
+			Fpaid: fpaid, 
+			Spaid: spaid, 
+			Birthday: birthday, 
+			YearsOld: yearsold, 
+			Email: takeEmail(resp), 
+			StudentNumber: takeStudentNumber(resp), 
+			Login: takeLogin(resp), 
+			WhichYear: takeWhichYearOfUniversity(resp),
+		}
 
 		persons = append(persons, person)
 	}
@@ -169,6 +182,16 @@ func takeLogin(resp *resty.Response) string {
 	}
 
 	return doc.Find(".font-semibold.text-gray-900.text-sm").Eq(6).Text()
+}
+
+func takeWhichYearOfUniversity(resp *resty.Response) string {
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
+
+	if err != nil {
+		log.Fatalf("Ошибка создания файла", err)
+	}
+
+	return doc.Find("p.text-sm.text-grey-900").Eq(0).Text()
 }
 
 func toJSON(persons []Person) {
