@@ -1,29 +1,5 @@
 [
   {
-    "fio": "Горчаков Алексей Алексеевич",
-    "fprice": "146000.00₽",
-    "sprice": "146000.00₽",
-    "fpaid": true,
-    "spaid": true,
-    "birthday": "(19.02.2006)",
-    "yearsold": "19 лет",
-    "email": "alegor-1902@yandex.ru",
-    "studentnumber": "24Б0795",
-    "login": "gorchakov.a.a@edu.mirea.ru"
-  },
-  {
-    "fio": "Прыгов Кирилл Дмитриевич",
-    "fprice": "129750.00₽",
-    "sprice": "129750.00₽",
-    "fpaid": true,
-    "spaid": true,
-    "birthday": "(05.08.2006)",
-    "yearsold": "18 лет",
-    "email": "k_jumper@mail.ru",
-    "studentnumber": "24Б0815",
-    "login": "prygov.k.d@edu.mirea.ru"
-  },
-  {
     "fio": "Палагнюк Александра Андреевна",
     "fprice": "146000.00₽",
     "sprice": "146000.00₽",
@@ -33,7 +9,8 @@
     "yearsold": "18 лет",
     "email": "wlnffx@mail.ru",
     "studentnumber": "24Б0812",
-    "login": "palagnyuk.a.a@edu.mirea.ru"
+    "login": "palagnyuk.a.a@edu.mirea.ru",
+    "year_of_university": "Курс 1"
   },
   {
     "fio": "Бакыр Мэрт Йылмазович",
@@ -45,7 +22,8 @@
     "yearsold": "18 лет",
     "email": "mertbakyr@yandex.ru",
     "studentnumber": "24Б0786",
-    "login": "bakyr.m.y@edu.mirea.ru"
+    "login": "bakyr.m.y@edu.mirea.ru",
+    "year_of_university": "Курс 1"
   },
   {
     "fio": "Андреев Алексей Романович",
@@ -57,6 +35,33 @@
     "yearsold": "18 лет",
     "email": "telzer1@yandex.ru",
     "studentnumber": "24Б1167",
-    "login": "andreev.a.r1@edu.mirea.ru"
+    "login": "andreev.a.r1@edu.mirea.ru",
+    "year_of_university": "Курс 1"
+  },
+  {
+    "fio": "Горчаков Алексей Алексеевич",
+    "fprice": "146000.00₽",
+    "sprice": "146000.00₽",
+    "fpaid": true,
+    "spaid": true,
+    "birthday": "(19.02.2006)",
+    "yearsold": "19 лет",
+    "email": "alegor-1902@yandex.ru",
+    "studentnumber": "24Б0795",
+    "login": "gorchakov.a.a@edu.mirea.ru",
+    "year_of_university": "Курс 1"
+  },
+  {
+    "fio": "Прыгов Кирилл Дмитриевич",
+    "fprice": "129750.00₽",
+    "sprice": "129750.00₽",
+    "fpaid": true,
+    "spaid": true,
+    "birthday": "(05.08.2006)",
+    "yearsold": "18 лет",
+    "email": "k_jumper@mail.ru",
+    "studentnumber": "24Б0815",
+    "login": "prygov.k.d@edu.mirea.ru",
+    "year_of_university": "Курс 1"
   }
 ]
