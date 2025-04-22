@@ -1,5 +1,18 @@
 [
   {
+    "fio": "Палагнюк Александра Андреевна",
+    "fprice": "146000.00₽",
+    "sprice": "146000.00₽",
+    "fpaid": true,
+    "spaid": true,
+    "birthday": "(19.10.2006)",
+    "yearsold": "18 лет",
+    "email": "wlnffx@mail.ru",
+    "studentnumber": "24Б0812",
+    "login": "palagnyuk.a.a@edu.mirea.ru",
+    "year_of_university": "Курс 1"
+  },
+  {
     "fio": "Бакыр Мэрт Йылмазович",
     "fprice": "146000.00₽",
     "sprice": "146000.00₽",
@@ -49,19 +62,6 @@
     "email": "k_jumper@mail.ru",
     "studentnumber": "24Б0815",
     "login": "prygov.k.d@edu.mirea.ru",
-    "year_of_university": "Курс 1"
-  },
-  {
-    "fio": "Палагнюк Александра Андреевна",
-    "fprice": "146000.00₽",
-    "sprice": "146000.00₽",
-    "fpaid": true,
-    "spaid": true,
-    "birthday": "(19.10.2006)",
-    "yearsold": "18 лет",
-    "email": "wlnffx@mail.ru",
-    "studentnumber": "24Б0812",
-    "login": "palagnyuk.a.a@edu.mirea.ru",
     "year_of_university": "Курс 1"
   }
 ]
