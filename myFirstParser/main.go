@@ -177,7 +177,7 @@ func main(){
 		"prygov.k.d@edu.mirea.ru":    "Kirill_200622",
 	}
 
-	person := Person{}
+	person := &Person{}
 	var persons []Person
 
 	for k, v := range LogPass {
@@ -214,7 +214,7 @@ func main(){
 		person.takeWhichYearOfUniversity(resp)
 		person.takeGroupNumber(resp)
 
-		persons = append(persons, person)
+		persons = append(persons, *person)
 	}
 
 	for _, v := range persons {
