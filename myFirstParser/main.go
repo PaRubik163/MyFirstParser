@@ -14,16 +14,17 @@ import (
 
 type Person struct{
 	FIO           string `json:"fio"`
-	Fprice        string `json:"fprice"`
-	Sprice        string `json:"sprice"`
-	Fpaid         bool   `json:"fpaid"`
-	Spaid         bool   `json:"spaid"`
+	Fprice        string `json:"f_price"`
+	Sprice        string `json:"s_price"`
+	Fpaid         bool   `json:"f_paid"`
+	Spaid         bool   `json:"s_paid"`
 	Birthday      string `json:"birthday"`
 	YearsOld      string `json:"yearsold"`
 	Email         string `json:"email"`
-	StudentNumber string `json:"studentnumber"`
+	StudentNumber string `json:"student_number"`
 	Login         string `json:"login"`
 	WhichYear 	  string `json:"year_of_university"`
+	GroupNumber   string `json:"group_number"`
 }
 
 func (p *Person) takeFIO(resp *resty.Response){
@@ -104,6 +105,16 @@ func (p *Person) takeWhichYearOfUniversity(resp *resty.Response){
 	}
 
 	p.WhichYear = doc.Find("p.text-sm.text-grey-900").Eq(0).Text()
+}
+
+func (p *Person) takeGroupNumber(resp *resty.Response){
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
+
+	if err != nil {
+		log.Fatalf("Ошибка создания файла", err)
+	}
+
+	p.GroupNumber = strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(doc.Find("p.text-white.bg-persian-blue-800.rounded-2xl").Text(), " 	", ""), "\n", ""), " ", "")
 }
 
 func ExtraPrice(allprice string) (string, string){
@@ -195,6 +206,7 @@ func main(){
 		person.takeStudentNumber(resp)
 		person.takeLogin(resp)
 		person.takeWhichYearOfUniversity(resp)
+		person.takeGroupNumber(resp)
 
 		persons = append(persons, person)
 	}
