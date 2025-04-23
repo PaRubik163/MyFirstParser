@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"errors"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/go-resty/resty/v2"
@@ -27,7 +28,7 @@ type Person struct {
 	GroupNumber   string `json:"group_number"`
 }
 
-func (p *Person) takeFIO(resp *resty.Response) {
+func (p *Person) takeFIO(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -37,7 +38,7 @@ func (p *Person) takeFIO(resp *resty.Response) {
 	p.FIO = (doc.Find(".ml-6").Find("h1").Text())
 }
 
-func (p *Person) takePrice(resp *resty.Response) {
+func (p *Person) takePrice(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -47,7 +48,7 @@ func (p *Person) takePrice(resp *resty.Response) {
 	p.Fprice, p.Sprice = extraPrice(doc.Find("h4.text-lg.font-bold").Text())
 }
 
-func (p *Person) takePaid(resp *resty.Response) {
+func (p *Person) takePaid(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -57,7 +58,7 @@ func (p *Person) takePaid(resp *resty.Response) {
 	p.Fpaid, p.Spaid = extraPaid(doc.Find("p.font-normal.text-gray-500.text-sm").Text())
 }
 
-func (p *Person) takeALLDataOfBirthday(resp *resty.Response) {
+func (p *Person) takeALLDataOfBirthday(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -67,7 +68,7 @@ func (p *Person) takeALLDataOfBirthday(resp *resty.Response) {
 	p.YearsOld, p.Birthday = extraBirthdayAndYearsold(doc.Find(".font-semibold.text-gray-900.text-sm").Eq(4).Text())
 }
 
-func (p *Person) takeEmail(resp *resty.Response) {
+func (p *Person) takeEmail(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -77,7 +78,7 @@ func (p *Person) takeEmail(resp *resty.Response) {
 	p.Email = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(3).Text()
 }
 
-func (p *Person) takeStudentNumber(resp *resty.Response) {
+func (p *Person) takeStudentNumber(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -87,7 +88,7 @@ func (p *Person) takeStudentNumber(resp *resty.Response) {
 	p.StudentNumber = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(2).Text()
 }
 
-func (p *Person) takeLogin(resp *resty.Response) {
+func (p *Person) takeLogin(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -97,7 +98,7 @@ func (p *Person) takeLogin(resp *resty.Response) {
 	p.Login = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(6).Text()
 }
 
-func (p *Person) takeWhichYearOfUniversity(resp *resty.Response) {
+func (p *Person) takeWhichYearOfUniversity(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -107,7 +108,7 @@ func (p *Person) takeWhichYearOfUniversity(resp *resty.Response) {
 	p.WhichYear = doc.Find("p.text-sm.text-grey-900").Eq(0).Text()
 }
 
-func (p *Person) takeGroupNumber(resp *resty.Response) {
+func (p *Person) takeGroupNumber(resp *resty.Response){
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -123,14 +124,14 @@ func (p *Person) takeGroupNumber(resp *resty.Response) {
 	p.GroupNumber = tmp
 }
 
-func extraPrice(allprice string) (string, string) {
+func extraPrice(allprice string) (string, string){
 	allprice = strings.ReplaceAll(allprice, "	", "")
 	allprice = strings.ReplaceAll(allprice, " ", "")
 
 	return allprice[:12], allprice[12:]
 }
 
-func extraPaid(allPaid string) (bool, bool) {
+func extraPaid(allPaid string) (bool, bool){
 	if allPaid[:16] == "Оплачено" && allPaid[16:] == "Оплачено" {
 		return true, true
 	}
@@ -138,7 +139,7 @@ func extraPaid(allPaid string) (bool, bool) {
 	return false, false
 }
 
-func extraBirthdayAndYearsold(birthdayAndyearsold string) (string, string) {
+func extraBirthdayAndYearsold(birthdayAndyearsold string) (string, string){
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, " 	", "")
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, " ", "")
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, "\n", "")
@@ -146,16 +147,14 @@ func extraBirthdayAndYearsold(birthdayAndyearsold string) (string, string) {
 
 	return birthdayAndyearsold[:9], birthdayAndyearsold[9:]
 }
-func Loginned(LogPass map[string]string, person *Person, persons *[]Person) {
+func Loginned(LogPass map[string]string, person *Person, persons *[]Person) error {
 
 	for k, v := range LogPass {
 		client := resty.New()
 		client.SetHeader("User-Agent", fake.UserAgent())
 
-		_, err := client.R().Get("https://lk.mirea.ru/auth.php")
-
-		if err != nil {
-			log.Fatalf("Ошибка GET-запроса", err)
+		if _, err := client.R().Get("https://lk.mirea.ru/auth.php"); err != nil{
+			return errors.New("Ошибка GET-запроса")	
 		}
 
 		data := map[string]string{
@@ -169,7 +168,7 @@ func Loginned(LogPass map[string]string, person *Person, persons *[]Person) {
 		resp, err := client.R().SetFormData(data).Post("https://lk.mirea.ru/auth.php?login=yes")
 
 		if err != nil {
-			log.Fatalf("Ошибка POST-запроса")
+			return errors.New("Ошибка POST-запроса")
 		}
 
 		person.takeFIO(resp)
@@ -184,6 +183,7 @@ func Loginned(LogPass map[string]string, person *Person, persons *[]Person) {
 
 		*persons = append(*persons, *person)
 	}
+	return nil
 }
 
 func toJSON(persons []Person) {
@@ -220,7 +220,11 @@ func main() {
 	person := &Person{}
 	var persons []Person
 
-	Loginned(LogPass, person, &persons)
+	err := Loginned(LogPass, person, &persons)
 
+	if err != nil{
+		fmt.Println(err)
+	}
+	
 	toJSON(persons)
 }
