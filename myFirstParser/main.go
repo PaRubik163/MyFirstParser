@@ -124,6 +124,12 @@ func (p *Person) takeGroupNumber(resp *resty.Response){
 	p.GroupNumber = tmp
 }
 
+func (p *Person) print(persons *[]Person){
+	for _, v := range *persons{
+		fmt.Println(v)
+	}
+}
+
 func extraPrice(allprice string) (string, string){
 	allprice = strings.ReplaceAll(allprice, "	", "")
 	allprice = strings.ReplaceAll(allprice, " ", "")
@@ -225,6 +231,8 @@ func main() {
 	if err != nil{
 		fmt.Println(err)
 	}
+	
+	person.print(&persons)
 	
 	toJSON(persons)
 }
