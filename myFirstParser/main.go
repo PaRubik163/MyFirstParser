@@ -12,7 +12,7 @@ import (
 	"github.com/icrowley/fake"
 )
 
-type Person struct{
+type Person struct {
 	FIO           string `json:"fio"`
 	Fprice        string `json:"f_price"`
 	Sprice        string `json:"s_price"`
@@ -23,11 +23,11 @@ type Person struct{
 	Email         string `json:"email"`
 	StudentNumber string `json:"student_number"`
 	Login         string `json:"login"`
-	WhichYear 	  string `json:"year_of_university"`
+	WhichYear     string `json:"year_of_university"`
 	GroupNumber   string `json:"group_number"`
 }
 
-func (p *Person) takeFIO(resp *resty.Response){
+func (p *Person) takeFIO(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -37,7 +37,7 @@ func (p *Person) takeFIO(resp *resty.Response){
 	p.FIO = (doc.Find(".ml-6").Find("h1").Text())
 }
 
-func (p *Person) takePrice(resp *resty.Response){
+func (p *Person) takePrice(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -47,7 +47,7 @@ func (p *Person) takePrice(resp *resty.Response){
 	p.Fprice, p.Sprice = extraPrice(doc.Find("h4.text-lg.font-bold").Text())
 }
 
-func (p *Person) takePaid(resp *resty.Response){
+func (p *Person) takePaid(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -57,7 +57,7 @@ func (p *Person) takePaid(resp *resty.Response){
 	p.Fpaid, p.Spaid = extraPaid(doc.Find("p.font-normal.text-gray-500.text-sm").Text())
 }
 
-func (p *Person) takeALLDataOfBirthday(resp *resty.Response){
+func (p *Person) takeALLDataOfBirthday(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -67,7 +67,7 @@ func (p *Person) takeALLDataOfBirthday(resp *resty.Response){
 	p.YearsOld, p.Birthday = extraBirthdayAndYearsold(doc.Find(".font-semibold.text-gray-900.text-sm").Eq(4).Text())
 }
 
-func (p *Person) takeEmail(resp *resty.Response){
+func (p *Person) takeEmail(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -77,7 +77,7 @@ func (p *Person) takeEmail(resp *resty.Response){
 	p.Email = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(3).Text()
 }
 
-func (p *Person) takeStudentNumber(resp *resty.Response){
+func (p *Person) takeStudentNumber(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -87,7 +87,7 @@ func (p *Person) takeStudentNumber(resp *resty.Response){
 	p.StudentNumber = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(2).Text()
 }
 
-func (p *Person) takeLogin(resp *resty.Response){
+func (p *Person) takeLogin(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -97,7 +97,7 @@ func (p *Person) takeLogin(resp *resty.Response){
 	p.Login = doc.Find(".font-semibold.text-gray-900.text-sm").Eq(6).Text()
 }
 
-func (p *Person) takeWhichYearOfUniversity(resp *resty.Response){
+func (p *Person) takeWhichYearOfUniversity(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -107,7 +107,7 @@ func (p *Person) takeWhichYearOfUniversity(resp *resty.Response){
 	p.WhichYear = doc.Find("p.text-sm.text-grey-900").Eq(0).Text()
 }
 
-func (p *Person) takeGroupNumber(resp *resty.Response){
+func (p *Person) takeGroupNumber(resp *resty.Response) {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(resp.String()))
 
 	if err != nil {
@@ -115,7 +115,7 @@ func (p *Person) takeGroupNumber(resp *resty.Response){
 	}
 
 	tmp := doc.Find("p.text-white.bg-persian-blue-800.rounded-2xl").Text()
-	
+
 	tmp = strings.ReplaceAll(tmp, "		", "")
 	tmp = strings.ReplaceAll(tmp, "\n", "")
 	tmp = strings.ReplaceAll(tmp, " ", "")
@@ -123,14 +123,14 @@ func (p *Person) takeGroupNumber(resp *resty.Response){
 	p.GroupNumber = tmp
 }
 
-func extraPrice(allprice string) (string, string){
+func extraPrice(allprice string) (string, string) {
 	allprice = strings.ReplaceAll(allprice, "	", "")
 	allprice = strings.ReplaceAll(allprice, " ", "")
 
 	return allprice[:12], allprice[12:]
 }
 
-func extraPaid(allPaid string) (bool, bool){
+func extraPaid(allPaid string) (bool, bool) {
 	if allPaid[:16] == "Оплачено" && allPaid[16:] == "Оплачено" {
 		return true, true
 	}
@@ -138,7 +138,7 @@ func extraPaid(allPaid string) (bool, bool){
 	return false, false
 }
 
-func extraBirthdayAndYearsold(birthdayAndyearsold string) (string, string){
+func extraBirthdayAndYearsold(birthdayAndyearsold string) (string, string) {
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, " 	", "")
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, " ", "")
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, "\n", "")
@@ -146,39 +146,7 @@ func extraBirthdayAndYearsold(birthdayAndyearsold string) (string, string){
 
 	return birthdayAndyearsold[:9], birthdayAndyearsold[9:]
 }
-
-func toJSON(persons []Person){
-	file, err := os.Create("information.json")
-
-	if err != nil {
-		log.Fatalf("Ошибка создания JSON файла", err)
-	}
-
-	defer file.Close()
-
-	encoder := json.NewEncoder(file)
-
-	encoder.SetIndent("", "  ")
-	err = encoder.Encode(persons)
-
-	if err != nil {
-		log.Fatalf("❌Ошибка записи JSON: %v", err)
-	}
-
-	fmt.Printf("✅Готово! Найдено людей: %d. Сохранено в information.json\n", len(persons))
-}
-
-func main(){
-	LogPass := map[string]string{
-		"palagnyuk.a.a@edu.mirea.ru": "Aa19102006.",
-		"bakyr.m.y@edu.mirea.ru":     "Mert251326Mert@",
-		"andreev.a.r1@edu.mirea.ru":  "123EWQasdD!",
-		"gorchakov.a.a@edu.mirea.ru": "gognop-wyzpUp-1zyqru",
-		"prygov.k.d@edu.mirea.ru":    "Kirill_200622",
-	}
-
-	person := &Person{}
-	var persons []Person
+func Loginned(LogPass map[string]string, person *Person, persons *[]Person) {
 
 	for k, v := range LogPass {
 		client := resty.New()
@@ -214,13 +182,45 @@ func main(){
 		person.takeWhichYearOfUniversity(resp)
 		person.takeGroupNumber(resp)
 
-		persons = append(persons, *person)
+		*persons = append(*persons, *person)
+	}
+}
+
+func toJSON(persons []Person) {
+	file, err := os.Create("information.json")
+
+	if err != nil {
+		log.Fatalf("Ошибка создания JSON файла", err)
 	}
 
-	for _, v := range persons {
-		fmt.Println(v)
+	defer file.Close()
+
+	encoder := json.NewEncoder(file)
+
+	encoder.SetIndent("", "  ")
+	err = encoder.Encode(persons)
+
+	if err != nil {
+		log.Fatalf("❌Ошибка записи JSON: %v", err)
 	}
+
+	fmt.Printf("✅Готово! Найдено людей: %d. Сохранено в information.json\n", len(persons))
+}
+
+func main() {
+
+	LogPass := map[string]string{
+		"palagnyuk.a.a@edu.mirea.ru": "Aa19102006.",
+		"bakyr.m.y@edu.mirea.ru":     "Mert251326Mert@",
+		"andreev.a.r1@edu.mirea.ru":  "123EWQasdD!",
+		"gorchakov.a.a@edu.mirea.ru": "gognop-wyzpUp-1zyqru",
+		"prygov.k.d@edu.mirea.ru":    "Kirill_200622",
+	}
+
+	person := &Person{}
+	var persons []Person
+
+	Loginned(LogPass, person, &persons)
 
 	toJSON(persons)
 }
-
