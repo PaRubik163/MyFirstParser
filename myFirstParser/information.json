@@ -1,5 +1,19 @@
 [
   {
+    "fio": "Прыгов Кирилл Дмитриевич",
+    "f_price": "129750.00₽",
+    "s_price": "129750.00₽",
+    "f_paid": true,
+    "s_paid": true,
+    "birthday": "(05.08.2006)",
+    "yearsold": "18 лет",
+    "email": "k_jumper@mail.ru",
+    "student_number": "24Б0815",
+    "login": "prygov.k.d@edu.mirea.ru",
+    "year_of_university": "Курс 1",
+    "group_number": "БББО-21-24"
+  },
+  {
     "fio": "Палагнюк Александра Андреевна",
     "f_price": "146000.00₽",
     "s_price": "146000.00₽",
@@ -54,19 +68,5 @@
     "login": "gorchakov.a.a@edu.mirea.ru",
     "year_of_university": "Курс 1",
     "group_number": "БББО-23-24"
-  },
-  {
-    "fio": "Прыгов Кирилл Дмитриевич",
-    "f_price": "129750.00₽",
-    "s_price": "129750.00₽",
-    "f_paid": true,
-    "s_paid": true,
-    "birthday": "(05.08.2006)",
-    "yearsold": "18 лет",
-    "email": "k_jumper@mail.ru",
-    "student_number": "24Б0815",
-    "login": "prygov.k.d@edu.mirea.ru",
-    "year_of_university": "Курс 1",
-    "group_number": "БББО-21-24"
   }
 ]

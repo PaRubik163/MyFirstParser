@@ -114,7 +114,13 @@ func (p *Person) takeGroupNumber(resp *resty.Response){
 		log.Fatalf("Ошибка создания файла", err)
 	}
 
-	p.GroupNumber = strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(doc.Find("p.text-white.bg-persian-blue-800.rounded-2xl").Text(), " 	", ""), "\n", ""), " ", "")
+	tmp := doc.Find("p.text-white.bg-persian-blue-800.rounded-2xl").Text()
+	
+	tmp = strings.ReplaceAll(tmp, "		", "")
+	tmp = strings.ReplaceAll(tmp, "\n", "")
+	tmp = strings.ReplaceAll(tmp, " ", "")
+
+	p.GroupNumber = tmp
 }
 
 func extraPrice(allprice string) (string, string){
