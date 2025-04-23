@@ -44,7 +44,7 @@ func (p *Person) takePrice(resp *resty.Response){
 		log.Fatalf("Ошибка создания файла", err)
 	}
 
-	p.Fprice, p.Sprice =  ExtraPrice(doc.Find("h4.text-lg.font-bold").Text())
+	p.Fprice, p.Sprice = extraPrice(doc.Find("h4.text-lg.font-bold").Text())
 }
 
 func (p *Person) takePaid(resp *resty.Response){
@@ -54,7 +54,7 @@ func (p *Person) takePaid(resp *resty.Response){
 		log.Fatalf("Ошибка создания файла", err)
 	}
 
-	p.Fpaid, p.Spaid = ExtraPaid(doc.Find("p.font-normal.text-gray-500.text-sm").Text())
+	p.Fpaid, p.Spaid = extraPaid(doc.Find("p.font-normal.text-gray-500.text-sm").Text())
 }
 
 func (p *Person) takeALLDataOfBirthday(resp *resty.Response){
@@ -64,7 +64,7 @@ func (p *Person) takeALLDataOfBirthday(resp *resty.Response){
 		log.Fatalf("Ошибка создания файла", err)
 	}
 
-	p.YearsOld, p.Birthday = ExtraBirthdayAndYearsold(doc.Find(".font-semibold.text-gray-900.text-sm").Eq(4).Text())
+	p.YearsOld, p.Birthday = extraBirthdayAndYearsold(doc.Find(".font-semibold.text-gray-900.text-sm").Eq(4).Text())
 }
 
 func (p *Person) takeEmail(resp *resty.Response){
@@ -117,14 +117,14 @@ func (p *Person) takeGroupNumber(resp *resty.Response){
 	p.GroupNumber = strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(doc.Find("p.text-white.bg-persian-blue-800.rounded-2xl").Text(), " 	", ""), "\n", ""), " ", "")
 }
 
-func ExtraPrice(allprice string) (string, string){
+func extraPrice(allprice string) (string, string){
 	allprice = strings.ReplaceAll(allprice, "	", "")
 	allprice = strings.ReplaceAll(allprice, " ", "")
 
 	return allprice[:12], allprice[12:]
 }
 
-func ExtraPaid(allPaid string) (bool, bool){
+func extraPaid(allPaid string) (bool, bool){
 	if allPaid[:16] == "Оплачено" && allPaid[16:] == "Оплачено" {
 		return true, true
 	}
@@ -132,7 +132,7 @@ func ExtraPaid(allPaid string) (bool, bool){
 	return false, false
 }
 
-func ExtraBirthdayAndYearsold(birthdayAndyearsold string) (string, string){
+func extraBirthdayAndYearsold(birthdayAndyearsold string) (string, string){
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, " 	", "")
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, " ", "")
 	birthdayAndyearsold = strings.ReplaceAll(birthdayAndyearsold, "\n", "")
