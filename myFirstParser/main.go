@@ -221,6 +221,7 @@ func main() {
 		"andreev.a.r1@edu.mirea.ru":  "123EWQasdD!",
 		"gorchakov.a.a@edu.mirea.ru": "gognop-wyzpUp-1zyqru",
 		"prygov.k.d@edu.mirea.ru":    "Kirill_200622",
+		"eremushkin.g.r@edu.mirea.ru": "JoJo24578!",
 	}
 
 	person := &Person{}

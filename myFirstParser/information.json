@@ -1,33 +1,5 @@
 [
   {
-    "fio": "Палагнюк Александра Андреевна",
-    "f_price": "146000.00₽",
-    "s_price": "146000.00₽",
-    "f_paid": true,
-    "s_paid": true,
-    "birthday": "(19.10.2006)",
-    "yearsold": "18 лет",
-    "email": "wlnffx@mail.ru",
-    "student_number": "24Б0812",
-    "login": "palagnyuk.a.a@edu.mirea.ru",
-    "year_of_university": "Курс 1",
-    "group_number": "БББО-22-24"
-  },
-  {
-    "fio": "Бакыр Мэрт Йылмазович",
-    "f_price": "146000.00₽",
-    "s_price": "146000.00₽",
-    "f_paid": true,
-    "s_paid": true,
-    "birthday": "(20.06.2006)",
-    "yearsold": "18 лет",
-    "email": "mertbakyr@yandex.ru",
-    "student_number": "24Б0786",
-    "login": "bakyr.m.y@edu.mirea.ru",
-    "year_of_university": "Курс 1",
-    "group_number": "БББО-22-24"
-  },
-  {
     "fio": "Андреев Алексей Романович",
     "f_price": "146000.00₽",
     "s_price": "146000.00₽",
@@ -68,5 +40,47 @@
     "login": "prygov.k.d@edu.mirea.ru",
     "year_of_university": "Курс 1",
     "group_number": "БББО-21-24"
+  },
+  {
+    "fio": "Еремушкин Георгий Романович",
+    "f_price": "146000.00₽",
+    "s_price": "146000.00₽",
+    "f_paid": true,
+    "s_paid": true,
+    "birthday": "(21.02.2006)",
+    "yearsold": "19 лет",
+    "email": "george.eryomushkin@yandex.ru",
+    "student_number": "24Б0800",
+    "login": "eremushkin.g.r@edu.mirea.ru",
+    "year_of_university": "Курс 1",
+    "group_number": "БББО-22-24"
+  },
+  {
+    "fio": "Палагнюк Александра Андреевна",
+    "f_price": "146000.00₽",
+    "s_price": "146000.00₽",
+    "f_paid": true,
+    "s_paid": true,
+    "birthday": "(19.10.2006)",
+    "yearsold": "18 лет",
+    "email": "wlnffx@mail.ru",
+    "student_number": "24Б0812",
+    "login": "palagnyuk.a.a@edu.mirea.ru",
+    "year_of_university": "Курс 1",
+    "group_number": "БББО-22-24"
+  },
+  {
+    "fio": "Бакыр Мэрт Йылмазович",
+    "f_price": "146000.00₽",
+    "s_price": "146000.00₽",
+    "f_paid": true,
+    "s_paid": true,
+    "birthday": "(20.06.2006)",
+    "yearsold": "18 лет",
+    "email": "mertbakyr@yandex.ru",
+    "student_number": "24Б0786",
+    "login": "bakyr.m.y@edu.mirea.ru",
+    "year_of_university": "Курс 1",
+    "group_number": "БББО-22-24"
   }
 ]
